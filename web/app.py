@@ -18,11 +18,12 @@ def send(wp):
     wp = f'{DOCROOT}{wp}'
     if "//" or  "~" or ".." in web:
         abort(403)
-    elif os.path.isfile(wp):
-        f=open(wp, 'r')
-        return f.read(), 200
     else:
-        abort(404)
+        if os.path.isfile(wp):
+             f=open(wp, 'r')
+             return f.read(), 200
+        else:
+            abort(404)
 
 
 
